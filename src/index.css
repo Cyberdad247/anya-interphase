@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --color-obsidian: #0A0A0A;
+  --color-royal-purple: #7851A9;
+  --color-amethyst: #9966CC;
+  --color-royal-gold: #D4AF37;
+  --color-royal-brass: #B5A642;
+  --color-royal-crimson: #990000;
+  
+  --font-terminal: "JetBrains Mono", "Fira Code", monospace;
+  --font-sovereign: "Cinzel", "Playfair Display", serif;
+}
+
+:root {
+  --background: #0A0A0A;
+  --foreground: #D4AF37;
+}
+
+html, body {
+  background-color: #0A0A0A !important;
+  color: #D4AF37;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  min-height: 100vh;
+  font-family: "Cinzel", "Playfair Display", serif;
+}
+
+#root {
+  background-color: #0A0A0A;
+  min-height: 100vh;
+}
+
+/* Glassmorphism 2.0 */
+.glass-panel {
+  background: rgba(15, 15, 15, 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 1);
+}
+
+.terminal-text {
+  font-family: var(--font-terminal);
+  color: #9966CC;
+  text-shadow: 0 0 5px rgba(153, 102, 204, 0.3);
+}
+
+.royal-border {
+  border: 1px solid #D4AF37;
+  position: relative;
+}
+
+.glow-gold {
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+.glow-purple {
+  box-shadow: 0 0 15px rgba(120, 81, 169, 0.4);
+}
