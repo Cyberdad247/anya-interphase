@@ -1,16 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { Terminal as TerminalIcon } from "lucide-react";
 
 export const SovereignConsole: React.FC = () => {
   const terminalRef = useRef<HTMLDivElement>(null);
-  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  useEffect(() => {
-    if (!isClient || !terminalRef.current) return;
+    if (!terminalRef.current) return;
 
     const initTerminal = async () => {
       const { Terminal } = await import("@xterm/xterm");
@@ -37,10 +32,10 @@ export const SovereignConsole: React.FC = () => {
       fitAddon.fit();
 
       term.writeln("\x1b[1;33m[SYSTEM_BOOT]\x1b[0m Synchronizing with Spire Edge...");
-      term.writeln("\x1b[1;32m[OK]\x1b[0m Bifrost Identity Verified: \x1b[1;36mvizio\x1b[0m");
+      term.writeln("\x1b[1;32m[OK]\x1b[0m Bifrost Identity Verified: \x1b[1;36mSovereign\x1b[0m");
       term.writeln("\x1b[1;32m[OK]\x1b[0m Tailscale Tunnel Active: \x1b[1;36m100.118.224.52\x1b[0m");
       term.writeln("");
-      term.write("\x1b[1;33mCamelot-OS>\x1b[0m ");
+      term.write("\x1b[1;33mSovereign@Camelot-OS>\x1b[0m ");
 
       const handleResize = () => fitAddon.fit();
       window.addEventListener("resize", handleResize);
@@ -52,7 +47,7 @@ export const SovereignConsole: React.FC = () => {
     };
 
     initTerminal();
-  }, [isClient]);
+  }, []);
 
   return (
     <div className="h-[25vh] md:h-64 glass-panel border-t-2 border-royal-gold/30 flex flex-col rounded-t-xl overflow-hidden mt-6">

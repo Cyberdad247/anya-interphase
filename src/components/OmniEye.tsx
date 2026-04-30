@@ -23,9 +23,13 @@ export const OmniEye: React.FC = () => {
            <button onClick={() => window.location.reload()} className="bg-transparent border-none p-0 outline-none" title="Re-sync Siphon">
               <Zap className="w-4 h-4 text-royal-gold/60 cursor-pointer hover:text-amethyst transition-colors" />
            </button>
-           <div title="Maximize Vision">
+           <button 
+             onClick={() => console.log("Visual_Siphon :: Maximizing vision matrix...")} 
+             className="bg-transparent border-none p-0 outline-none active:scale-95 transition-transform" 
+             title="Maximize Vision"
+           >
               <Maximize2 className="w-4 h-4 text-royal-gold/60 cursor-pointer hover:text-amethyst transition-colors" />
-           </div>
+           </button>
         </div>
       </div>
 

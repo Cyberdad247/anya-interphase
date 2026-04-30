@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Cpu, Users, Zap, AlertTriangle } from "lucide-react";
 
 const SPECIES = [
@@ -12,6 +12,14 @@ const SPECIES = [
 ];
 
 export const SwarmMatrix: React.FC = () => {
+  const [hasAlert, setHasAlert] = React.useState(true);
+
+  const handleRepair = () => {
+     console.log("ACTUATING :: AUTO_FORGE_DEPLOYED");
+     setHasAlert(false);
+     // In a real system, this would call /v1/repair
+  };
+
   return (
     <div className="w-full h-full flex flex-col gap-4" role="region" aria-label="Swarm Matrix Telemetry">
       <div className="flex items-center justify-between px-2">
@@ -42,6 +50,7 @@ export const SwarmMatrix: React.FC = () => {
                      <motion.div
                         className="h-full bg-amethyst"
                         initial={{ width: "40%" }}
+                        animate={{ width: hasAlert ? "15%" : "40%" }}
                      />
                   </div>
                </div>
@@ -51,27 +60,42 @@ export const SwarmMatrix: React.FC = () => {
             <p className="text-[9px] text-white/40 uppercase font-terminal mt-1">{s.role}</p>
 
             <div className="mt-4 flex items-center justify-between">
-               <span className="text-[8px] text-amethyst font-terminal uppercase px-1.5 py-0.5 bg-amethyst/10 rounded">Idle</span>
-               <Zap className="w-3 h-3 text-amethyst/30" />
+               <span className="text-[8px] text-amethyst font-terminal uppercase px-1.5 py-0.5 bg-amethyst/10 rounded">
+                  {hasAlert ? "Throttled" : "Idle"}
+               </span>
+               <Zap className={`w-3 h-3 ${hasAlert ? 'text-royal-crimson animate-pulse' : 'text-amethyst/30'}`} />
             </div>
           </motion.div>
         ))}
       </div>
+      
       {/* Emergency Self-Correction Hook */}
-      <div className="glass-panel p-4 rounded-xl border-l-4 border-royal-crimson flex items-center justify-between mt-auto">
-         <div className="flex items-center gap-4">
-            <div className="p-2 bg-royal-crimson/20 rounded-full">
-               <AlertTriangle className="w-4 h-4 text-royal-crimson" />
-            </div>
-            <div>
-               <p className="text-xs text-white/90 font-bold uppercase tracking-widest">Shatterpoint Detected</p>
-               <p className="text-[9px] text-white/40 font-terminal uppercase mt-0.5">3CX_Handshake_Timeout :: event_bridge.py:142</p>
-            </div>
-         </div>
-         <button className="px-4 py-1.5 bg-royal-crimson/10 border border-royal-crimson/40 text-royal-crimson text-[9px] uppercase tracking-widest rounded hover:bg-royal-crimson transition-all hover:text-white font-bold">
-            Deploy Auto-Forge
-         </button>
-      </div>
+      <AnimatePresence>
+        {hasAlert && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            className="glass-panel p-4 rounded-xl border-l-4 border-royal-crimson flex items-center justify-between mt-auto"
+          >
+             <div className="flex items-center gap-4">
+                <div className="p-2 bg-royal-crimson/20 rounded-full">
+                   <AlertTriangle className="w-4 h-4 text-royal-crimson" />
+                </div>
+                <div>
+                   <p className="text-xs text-white/90 font-bold uppercase tracking-widest">Shatterpoint Detected</p>
+                   <p className="text-[9px] text-white/40 font-terminal uppercase mt-0.5">3CX_Handshake_Timeout :: event_bridge.py:142</p>
+                </div>
+             </div>
+             <button 
+               onClick={handleRepair}
+               className="px-4 py-1.5 bg-royal-crimson/10 border border-royal-crimson/40 text-royal-crimson text-[9px] uppercase tracking-widest rounded hover:bg-royal-crimson transition-all hover:text-white font-bold cursor-pointer"
+             >
+                Deploy Auto-Forge
+             </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

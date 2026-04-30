@@ -46,7 +46,10 @@ export const SystemHub: React.FC = () => {
                      <span className="text-royal-gold">DETECTING...</span>
                   </div>
                </div>
-               <button className="w-full mt-6 py-2 bg-amethyst/10 border border-amethyst/40 text-amethyst text-[9px] uppercase tracking-widest rounded hover:bg-amethyst/20 transition-all font-bold">
+               <button 
+                 onClick={() => console.log("Hardware_Scan :: Querying GPU/CPU kinetic profiles...")}
+                 className="w-full mt-6 py-2 bg-amethyst/10 border border-amethyst/40 text-amethyst text-[9px] uppercase tracking-widest rounded hover:bg-amethyst/20 transition-all font-bold cursor-pointer"
+               >
                   Run Hardware Scan
                </button>
             </div>
