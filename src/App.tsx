@@ -154,7 +154,7 @@ function App() {
                     { id: 'archives', icon: Database, label: 'Archives' },
                     { id: 'hive', icon: Code, label: 'Hive IDE' },
                     { id: 'governance', icon: ShieldCheck, label: 'Governance' },
-                    { id: 'telephony', icon: PhoneCall, label: 'Telephony' },
+                    { id: 'telephony', icon: PhoneCall, label: 'PhoneClaw' },
                     { id: 'omni', icon: Route, label: 'Omni-Route' },
                     { id: 'system', icon: Settings, label: 'System' }
                   ].map((item) => (
@@ -310,10 +310,10 @@ function App() {
                    className="flex-1 glass-panel rounded-2xl p-10 flex flex-col items-center justify-center text-center"
                 >
                    <PhoneCall className="w-20 h-20 text-amethyst mb-6 animate-pulse" />
-                   <h2 className="text-3xl font-sovereign text-royal-gold uppercase tracking-[0.4em]">Voice & Telephony</h2>
+                   <h2 className="text-3xl font-sovereign text-royal-gold uppercase tracking-[0.4em]">PhoneClaw Edge</h2>
                    <p className="text-white/40 mt-4 max-w-lg font-terminal text-sm">
-                      [ BRIDGE_ACTIVE :: SIP_HARDENED ] <br/>
-                      Managing 3CX integration and persona souls.
+                      [ ANDROID_NODE_ARMED :: SIP_HARDENED ] <br/>
+                      Managing PhoneClaw, 3CX integration, and persona souls.
                    </p>
                 </motion.div>
              )}
